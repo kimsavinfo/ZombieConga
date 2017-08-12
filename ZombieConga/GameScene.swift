@@ -11,24 +11,30 @@ import SpriteKit
 class GameScene: SKScene {
     
     let zombie = SKSpriteNode(imageNamed: "zombie1")
+    let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
+    let zombieAnimation: SKAction
+    var invincible = false
+    var lives = 5
+    
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     let zombieMovePointsPerSec: CGFloat = 480.0
     var velocity = CGPoint.zero
     let playableRect: CGRect
     var lastTouchLocation: CGPoint?
-    let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
-    let zombieAnimation: SKAction
+    
     let catCollisionSound: SKAction = SKAction.playSoundFileNamed(
         "hitCat.wav", waitForCompletion: false)
+    let catMovePointsPerSec:CGFloat = 480.0
+    
     let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed(
         "hitCatLady.wav", waitForCompletion: false)
-    var invincible = false
-    let catMovePointsPerSec:CGFloat = 480.0
-    var lives = 5
+    
+    
     var gameOver = false
     let cameraNode = SKCameraNode()
     let cameraMovePointsPerSec: CGFloat = 200.0
+    
     let livesLabel = SKLabelNode(fontNamed: "Glimstick")
     let catsLabel = SKLabelNode(fontNamed: "Glimstick")
     
@@ -61,15 +67,6 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func debugDrawPlayableArea() {
-        let shape = SKShapeNode()
-        let path = CGMutablePath()
-        path.addRect(playableRect)
-        shape.path = path
-        shape.strokeColor = SKColor.red
-        shape.lineWidth = 4.0
-        addChild(shape)
-    }
     
     override func didMove(to view: SKView) {
         
@@ -88,7 +85,6 @@ class GameScene: SKScene {
         zombie.position = CGPoint(x: 400, y: 400)
         zombie.zPosition = 100
         addChild(zombie)
-        // zombie.run(SKAction.repeatForever(zombieAnimation))
         
         run(SKAction.repeatForever(
             SKAction.sequence([SKAction.run() { [weak self] in
@@ -101,8 +97,6 @@ class GameScene: SKScene {
                 self?.spawnCat()
                 },
                                SKAction.wait(forDuration: 1.0)])))
-        
-        // debugDrawPlayableArea()
         
         addChild(cameraNode)
         camera = cameraNode
@@ -140,23 +134,13 @@ class GameScene: SKScene {
         }
         lastUpdateTime = currentTime
         
-        /*
-         if let lastTouchLocation = lastTouchLocation {
-         let diff = lastTouchLocation - zombie.position
-         if diff.length() <= zombieMovePointsPerSec * CGFloat(dt) {
-         zombie.position = lastTouchLocation
-         velocity = CGPoint.zero
-         stopZombieAnimation()
-         } else {
-         */
+        
         move(sprite: zombie, velocity: velocity)
         rotate(sprite: zombie, direction: velocity,
                rotateRadiansPerSec: zombieRotateRadiansPerSec)
-        /*}
-         }*/
         
         boundsCheckZombie()
-        // checkCollisions()
+        
         moveTrain()
         moveCamera()
         livesLabel.text = "Lives: \(lives)"
@@ -173,8 +157,6 @@ class GameScene: SKScene {
             // 3
             view?.presentScene(gameOverScene, transition: reveal)
         }
-        
-        // cameraNode.position = zombie.position
         
     }
     
