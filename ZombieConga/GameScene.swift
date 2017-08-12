@@ -163,7 +163,6 @@ class GameScene: SKScene {
         
         if lives <= 0 && !gameOver {
             gameOver = true
-            print("You lose!")
             backgroundMusicPlayer.stop()
             
             // 1
@@ -394,7 +393,6 @@ class GameScene: SKScene {
         
         if trainCount >= 15 && !gameOver {
             gameOver = true
-            print("You win!")
             backgroundMusicPlayer.stop()
             
             // 1
@@ -407,7 +405,6 @@ class GameScene: SKScene {
         }
         
         catsLabel.text = "Cats: \(trainCount)"
-        
     }
     
     func loseCats() {
