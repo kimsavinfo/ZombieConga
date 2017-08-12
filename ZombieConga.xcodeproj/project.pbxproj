@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		750292B51F3F412600D15CD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292B41F3F412600D15CD2 /* AppDelegate.swift */; };
-		750292BB1F3F412600D15CD2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292BA1F3F412600D15CD2 /* GameScene.swift */; };
 		750292BD1F3F412600D15CD2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292BC1F3F412600D15CD2 /* GameViewController.swift */; };
 		750292C01F3F412600D15CD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750292BE1F3F412600D15CD2 /* Main.storyboard */; };
 		750292C21F3F412600D15CD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 750292C11F3F412600D15CD2 /* Assets.xcassets */; };
@@ -18,17 +17,17 @@
 		750292D41F3F524300D15CD2 /* hitCatLady.wav in Resources */ = {isa = PBXBuildFile; fileRef = 750292CF1F3F524300D15CD2 /* hitCatLady.wav */; };
 		750292D51F3F524300D15CD2 /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 750292D01F3F524300D15CD2 /* lose.wav */; };
 		750292D61F3F524300D15CD2 /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 750292D11F3F524300D15CD2 /* win.wav */; };
-		750292D81F3F527900D15CD2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292D71F3F527900D15CD2 /* Utils.swift */; };
-		750292DA1F3F544D00D15CD2 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292D91F3F544D00D15CD2 /* GameOverScene.swift */; };
-		750292DC1F3F553300D15CD2 /* BackgroundMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292DB1F3F553300D15CD2 /* BackgroundMusicPlayer.swift */; };
-		750292DE1F3F55E900D15CD2 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750292DD1F3F55E900D15CD2 /* MainMenuScene.swift */; };
-		750292E01F3F5BEF00D15CD2 /* GLIMSTIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 750292DF1F3F5BEF00D15CD2 /* GLIMSTIC.TTF */; };
+		75CF00201F3F6C6F00306DB3 /* GLIMSTIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */; };
+		75CF00251F3F6CC100306DB3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF00231F3F6CC000306DB3 /* GameScene.swift */; };
+		75CF00261F3F6CC100306DB3 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF00241F3F6CC000306DB3 /* GameOverScene.swift */; };
+		75CF00281F3F6CCF00306DB3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF00271F3F6CCE00306DB3 /* Utils.swift */; };
+		75EE5C5D1F3F6D42003EF6AD /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE5C5C1F3F6D42003EF6AD /* MainMenuScene.swift */; };
+		75EE5C611F3F6D85003EF6AD /* BackgroundMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		750292B11F3F412600D15CD2 /* ZombieConga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZombieConga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		750292B41F3F412600D15CD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		750292BA1F3F412600D15CD2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		750292BC1F3F412600D15CD2 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		750292BF1F3F412600D15CD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		750292C11F3F412600D15CD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,11 +38,12 @@
 		750292CF1F3F524300D15CD2 /* hitCatLady.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCatLady.wav; sourceTree = "<group>"; };
 		750292D01F3F524300D15CD2 /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = "<group>"; };
 		750292D11F3F524300D15CD2 /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
-		750292D71F3F527900D15CD2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		750292D91F3F544D00D15CD2 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		750292DB1F3F553300D15CD2 /* BackgroundMusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusicPlayer.swift; sourceTree = "<group>"; };
-		750292DD1F3F55E900D15CD2 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
-		750292DF1F3F5BEF00D15CD2 /* GLIMSTIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GLIMSTIC.TTF; sourceTree = "<group>"; };
+		75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GLIMSTIC.TTF; sourceTree = "<group>"; };
+		75CF00231F3F6CC000306DB3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ZombieConga/Scenes/GameScene.swift; sourceTree = SOURCE_ROOT; };
+		75CF00241F3F6CC000306DB3 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOverScene.swift; path = ZombieConga/Scenes/GameOverScene.swift; sourceTree = SOURCE_ROOT; };
+		75CF00271F3F6CCE00306DB3 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ZombieConga/Utils/Utils.swift; sourceTree = SOURCE_ROOT; };
+		75EE5C5C1F3F6D42003EF6AD /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuScene.swift; path = ZombieConga/Scenes/MainMenuScene.swift; sourceTree = SOURCE_ROOT; };
+		75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusicPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,17 +76,15 @@
 		750292B31F3F412600D15CD2 /* ZombieConga */ = {
 			isa = PBXGroup;
 			children = (
-				750292DF1F3F5BEF00D15CD2 /* GLIMSTIC.TTF */,
-				750292CC1F3F524300D15CD2 /* Sounds */,
+				75EE5C5F1F3F6D71003EF6AD /* AudioPlayer */,
+				75CF00221F3F6CB000306DB3 /* Utils */,
+				75CF00211F3F6CA700306DB3 /* Scenes */,
 				750292B41F3F412600D15CD2 /* AppDelegate.swift */,
-				750292DD1F3F55E900D15CD2 /* MainMenuScene.swift */,
-				750292DB1F3F553300D15CD2 /* BackgroundMusicPlayer.swift */,
-				750292BA1F3F412600D15CD2 /* GameScene.swift */,
-				750292D91F3F544D00D15CD2 /* GameOverScene.swift */,
 				750292BC1F3F412600D15CD2 /* GameViewController.swift */,
-				750292D71F3F527900D15CD2 /* Utils.swift */,
 				750292BE1F3F412600D15CD2 /* Main.storyboard */,
 				750292C31F3F412600D15CD2 /* LaunchScreen.storyboard */,
+				75CF001E1F3F6C4B00306DB3 /* Fonts */,
+				750292CC1F3F524300D15CD2 /* Sounds */,
 				750292C11F3F412600D15CD2 /* Assets.xcassets */,
 				750292C61F3F412600D15CD2 /* Info.plist */,
 			);
@@ -103,6 +101,42 @@
 				750292D11F3F524300D15CD2 /* win.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		75CF001E1F3F6C4B00306DB3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		75CF00211F3F6CA700306DB3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				75EE5C5C1F3F6D42003EF6AD /* MainMenuScene.swift */,
+				75CF00241F3F6CC000306DB3 /* GameOverScene.swift */,
+				75CF00231F3F6CC000306DB3 /* GameScene.swift */,
+			);
+			name = Scenes;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		75CF00221F3F6CB000306DB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				75CF00271F3F6CCE00306DB3 /* Utils.swift */,
+			);
+			name = Utils;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		75EE5C5F1F3F6D71003EF6AD /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */,
+			);
+			path = AudioPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,7 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				750292E01F3F5BEF00D15CD2 /* GLIMSTIC.TTF in Resources */,
+				75CF00201F3F6C6F00306DB3 /* GLIMSTIC.TTF in Resources */,
 				750292C01F3F412600D15CD2 /* Main.storyboard in Resources */,
 				750292D61F3F524300D15CD2 /* win.wav in Resources */,
 				750292D31F3F524300D15CD2 /* hitCat.wav in Resources */,
@@ -182,13 +216,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				750292DC1F3F553300D15CD2 /* BackgroundMusicPlayer.swift in Sources */,
-				750292DA1F3F544D00D15CD2 /* GameOverScene.swift in Sources */,
-				750292BB1F3F412600D15CD2 /* GameScene.swift in Sources */,
+				75CF00251F3F6CC100306DB3 /* GameScene.swift in Sources */,
+				75CF00261F3F6CC100306DB3 /* GameOverScene.swift in Sources */,
 				750292BD1F3F412600D15CD2 /* GameViewController.swift in Sources */,
 				750292B51F3F412600D15CD2 /* AppDelegate.swift in Sources */,
-				750292DE1F3F55E900D15CD2 /* MainMenuScene.swift in Sources */,
-				750292D81F3F527900D15CD2 /* Utils.swift in Sources */,
+				75EE5C5D1F3F6D42003EF6AD /* MainMenuScene.swift in Sources */,
+				75EE5C611F3F6D85003EF6AD /* BackgroundMusicPlayer.swift in Sources */,
+				75CF00281F3F6CCF00306DB3 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
