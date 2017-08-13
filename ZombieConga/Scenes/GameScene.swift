@@ -192,15 +192,8 @@ class GameScene: SKScene {
     
     // MARK: Zombie Hit
     
-    func zombieHit(cat: SKSpriteNode) {
-        cat.name = "train"
-        cat.removeAllActions()
-        cat.setScale(1.0)
-        cat.zRotation = 0
-        
-        let turnGreen = SKAction.colorize(with: SKColor.green, colorBlendFactor: 1.0, duration: 0.2)
-        cat.run(turnGreen)
-        
+    func zombieHit(cat: Cat) {
+        cat.addToTrain()
         run(catCollisionSound)
     }
     
@@ -227,9 +220,9 @@ class GameScene: SKScene {
     }
     
     func checkCollisions() {
-        var hitCats: [SKSpriteNode] = []
+        var hitCats: [Cat] = []
         enumerateChildNodes(withName: "cat") { node, _ in
-            let cat = node as! SKSpriteNode
+            let cat = node as! Cat
             if cat.frame.intersects(self.zombie.frame) {
                 hitCats.append(cat)
             }

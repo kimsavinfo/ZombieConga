@@ -48,6 +48,19 @@ class Cat : SKSpriteNode {
         self.run(SKAction.sequence(actions))
     }
     
+    // MARK: Collision
+    
+    func addToTrain() {
+        self.name = "train"
+        self.removeAllActions()
+        self.setScale(1.0)
+        self.zRotation = 0
+        
+        let turnGreen = SKAction.colorize(with: SKColor.green, colorBlendFactor: 1.0, duration: 0.2)
+        self.run(turnGreen)
+    }
+        
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
