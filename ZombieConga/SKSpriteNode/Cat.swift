@@ -77,6 +77,24 @@ class Cat : SKSpriteNode {
         run(moveAction)
     }
     
+    func removeFromTrain() {
+        var randomSpot = self.position
+        randomSpot.x += CGFloat.random(min: -100, max: 100)
+        randomSpot.y += CGFloat.random(min: -100, max: 100)
+        
+        self.name = ""
+        self.run(
+            SKAction.sequence([
+                SKAction.group([
+                    SKAction.rotate(byAngle: π*4, duration: 1.0),
+                    SKAction.move(to: randomSpot, duration: 1.0),
+                    SKAction.scale(to: 0, duration: 1.0)
+                    ]),
+                SKAction.removeFromParent()
+                ])
+        )
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

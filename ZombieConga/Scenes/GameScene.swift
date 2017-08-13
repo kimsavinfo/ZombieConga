@@ -270,25 +270,12 @@ class GameScene: SKScene {
     }
     
     func loseCats() {
-        // 1
         var loseCount = 0
+        
         enumerateChildNodes(withName: "train") { node, stop in
-            // 2
-            var randomSpot = node.position
-            randomSpot.x += CGFloat.random(min: -100, max: 100)
-            randomSpot.y += CGFloat.random(min: -100, max: 100)
-            // 3
-            node.name = ""
-            node.run(
-                SKAction.sequence([
-                    SKAction.group([
-                        SKAction.rotate(byAngle: π*4, duration: 1.0),
-                        SKAction.move(to: randomSpot, duration: 1.0),
-                        SKAction.scale(to: 0, duration: 1.0)
-                        ]),
-                    SKAction.removeFromParent()
-                    ]))
-            // 4
+            let cat = node as! Cat
+            cat.removeFromTrain()
+            
             loseCount += 1
             if loseCount >= 2 {
                 stop[0] = true
