@@ -10,10 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    // let zombie = SKSpriteNode(imageNamed: "zombie1")
     let zombie = Zombie()
     let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
-    let zombieAnimation: SKAction
+    
     var invincible = false
     var lives = 5
     
@@ -46,20 +45,6 @@ class GameScene: SKScene {
         playableRect = CGRect(x: 0, y: playableMargin,
                               width: size.width,
                               height: playableHeight)
-        
-        // 1
-        var textures:[SKTexture] = []
-        // 2
-        for i in 1...4 {
-            textures.append(SKTexture(imageNamed: "zombie\(i)"))
-        }
-        // 3
-        textures.append(textures[2])
-        textures.append(textures[1])
-        
-        // 4
-        zombieAnimation = SKAction.animate(with: textures,
-                                           timePerFrame: 0.1)
         
         super.init(size: size)
     }
@@ -168,7 +153,8 @@ class GameScene: SKScene {
     }
     
     func moveZombieToward(location: CGPoint) {
-        startZombieAnimation()
+        zombie.startAnimation()
+        
         let offset = location - zombie.position
         let direction = offset.normalized()
         velocity = direction * zombieMovePointsPerSec
@@ -240,18 +226,6 @@ class GameScene: SKScene {
             SKAction.moveBy(x: -(size.width + enemy.size.width), y: 0, duration: 2.0)
         let actionRemove = SKAction.removeFromParent()
         enemy.run(SKAction.sequence([actionMove, actionRemove]))
-    }
-    
-    func startZombieAnimation() {
-        if zombie.action(forKey: "animation") == nil {
-            zombie.run(
-                SKAction.repeatForever(zombieAnimation),
-                withKey: "animation")
-        }
-    }
-    
-    func stopZombieAnimation() {
-        zombie.removeAction(forKey: "animation")
     }
     
     func spawnCat() {
