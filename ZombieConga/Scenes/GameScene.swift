@@ -48,8 +48,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         for i in 0...1 {
-            let background = Background(position: i)
-            addChild(background.getNode())
+            let background = backgroundNode(position: i)
+            addChild(background)
         }
         
         addChild(zombie)
@@ -244,16 +244,9 @@ class GameScene: SKScene {
         cameraNode.move(dt: dt)
         
         let cameraRect = cameraNode.getRect()
-        
         enumerateChildNodes(withName: "background") { node, _ in
             let background = node as! SKSpriteNode
-            if background.position.x + background.size.width <
-                cameraRect.origin.x {
-                background.position = CGPoint(
-                    x: background.position.x + background.size.width*2,
-                    y: background.position.y)
-            }
+            scrollBackground(backgroundNode: background, cameraRect: cameraRect)
         }
-        
     }
 }
