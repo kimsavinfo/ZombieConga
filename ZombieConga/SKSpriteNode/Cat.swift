@@ -52,6 +52,17 @@ class Cat : SKSpriteNode {
         run(SKAction.sequence(actions))
     }
     
+    func moveAsTrain(targetPosition: CGPoint) {
+        let actionDuration = 0.3
+        let offset = targetPosition - self.position
+        let direction = offset.normalized()
+        let amountToMovePerSec = direction * self.movePointsPerSec
+        let amountToMove = amountToMovePerSec * CGFloat(actionDuration)
+        let moveAction = SKAction.moveBy(x: amountToMove.x, y: amountToMove.y, duration: actionDuration)
+        
+        run(moveAction)
+    }
+    
     // MARK: Collision
     
     func addToTrain() {
@@ -64,17 +75,6 @@ class Cat : SKSpriteNode {
         run(turnGreen)
         
         run(collisionSound)
-    }
-    
-    func move(targetPosition: CGPoint) {
-        let actionDuration = 0.3
-        let offset = targetPosition - self.position
-        let direction = offset.normalized()
-        let amountToMovePerSec = direction * self.movePointsPerSec
-        let amountToMove = amountToMovePerSec * CGFloat(actionDuration)
-        let moveAction = SKAction.moveBy(x: amountToMove.x, y: amountToMove.y, duration: actionDuration)
-        
-        run(moveAction)
     }
     
     func removeFromTrain() {

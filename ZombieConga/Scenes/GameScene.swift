@@ -164,20 +164,8 @@ class GameScene: SKScene {
     // MARK: Spawn
     
     func spawnEnemy() {
-        let enemy = SKSpriteNode(imageNamed: "enemy")
-        enemy.position = CGPoint(
-            x: cameraRect.maxX + enemy.size.width/2,
-            y: CGFloat.random(
-                min: cameraRect.minY + enemy.size.height/2,
-                max: cameraRect.maxY - enemy.size.height/2))
-        enemy.zPosition = 50
-        enemy.name = "enemy"
+        let enemy = CatLady(cameraRect: cameraRect)
         addChild(enemy)
-        
-        let actionMove =
-            SKAction.moveBy(x: -(size.width + enemy.size.width), y: 0, duration: 2.0)
-        let actionRemove = SKAction.removeFromParent()
-        enemy.run(SKAction.sequence([actionMove, actionRemove]))
     }
     
     func spawnCat() {
@@ -247,7 +235,7 @@ class GameScene: SKScene {
             
             let cat = node as! Cat
             if !cat.hasActions() {
-                cat.move(targetPosition: targetPosition)
+                cat.moveAsTrain(targetPosition: targetPosition)
             }
             
             targetPosition = cat.position
