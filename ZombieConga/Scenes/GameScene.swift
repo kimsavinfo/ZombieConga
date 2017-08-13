@@ -10,7 +10,8 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    let zombie = SKSpriteNode(imageNamed: "zombie1")
+    // let zombie = SKSpriteNode(imageNamed: "zombie1")
+    let zombie = Zombie()
     let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
     let zombieAnimation: SKAction
     var invincible = false

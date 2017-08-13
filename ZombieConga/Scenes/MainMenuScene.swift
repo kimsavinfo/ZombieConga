@@ -16,16 +16,16 @@ class MainMenuScene: SKScene {
         addChild(background)
     }
     
-    func sceneTapped() {
-        let myScene = GameScene(size: size)
-        myScene.scaleMode = scaleMode
+    func showGameScene() {
+        let gameScene = GameScene(size: size)
+        gameScene.scaleMode = scaleMode
         let reveal = SKTransition.doorway(withDuration: 1.5)
-        view?.presentScene(myScene, transition: reveal)
+        view?.presentScene(gameScene, transition: reveal)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
                                with event: UIEvent?) {
-        sceneTapped()
+        showGameScene()
     }
 
 }
