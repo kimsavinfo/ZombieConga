@@ -15,6 +15,10 @@ class Zombie : SKSpriteNode {
     let movePointsPerSec: CGFloat = 480.0
     let rotateRadiansPerSec:CGFloat = 4.0 * π
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     init() {
         var textures:[SKTexture] = []
         for i in 1...4 {
@@ -92,9 +96,5 @@ class Zombie : SKSpriteNode {
     
     func stopAnimation() {
         self.removeAction(forKey: "animation")
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

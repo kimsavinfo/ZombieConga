@@ -14,6 +14,10 @@ class Cat : SKSpriteNode {
         "hitCat.wav", waitForCompletion: false)
     let movePointsPerSec:CGFloat = 480.0
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     init(cameraRect: CGRect) {
         let texture = SKTexture(imageNamed: "cat")
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
@@ -93,9 +97,5 @@ class Cat : SKSpriteNode {
                 SKAction.removeFromParent()
                 ])
         )
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

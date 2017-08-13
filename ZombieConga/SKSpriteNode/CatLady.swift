@@ -13,6 +13,10 @@ class CatLady : SKSpriteNode {
     let collisionSound: SKAction = SKAction.playSoundFileNamed(
         "hitCatLady.wav", waitForCompletion: false)
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     init(cameraRect: CGRect) {
         let texture = SKTexture(imageNamed: "enemy")
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
@@ -39,9 +43,5 @@ class CatLady : SKSpriteNode {
     
     func playCollideSound() {
         run(collisionSound)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -27,7 +27,7 @@ class GameScene: SKScene {
     let cameraNode = SKCameraNode()
     let cameraMovePointsPerSec: CGFloat = 200.0
     
-    let livesLabel = SKLabelNode(fontNamed: "Glimstick")
+    let livesLabel = LivesLabel()
     let catsLabel = SKLabelNode(fontNamed: "Glimstick")
     
     override init(size: CGSize) {
@@ -39,6 +39,8 @@ class GameScene: SKScene {
                               height: playableHeight)
         
         super.init(size: size)
+        
+        backgroundMusicPlayer.play(filename: "backgroundMusic.mp3")
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -48,8 +50,6 @@ class GameScene: SKScene {
     // MARK: Update
     
     override func didMove(to view: SKView) {
-        backgroundMusicPlayer.play(filename: "backgroundMusic.mp3")
-        
         for i in 0...1 {
             let background = backgroundNode()
             background.anchorPoint = CGPoint.zero
@@ -78,15 +78,7 @@ class GameScene: SKScene {
         camera = cameraNode
         cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
         
-        livesLabel.text = "Lives: X"
-        livesLabel.fontColor = SKColor.black
-        livesLabel.fontSize = 100
-        livesLabel.zPosition = 150
-        livesLabel.horizontalAlignmentMode = .left
-        livesLabel.verticalAlignmentMode = .bottom
-        livesLabel.position = CGPoint(
-            x: -playableRect.size.width/2 + CGFloat(20),
-            y: -playableRect.size.height/2 + CGFloat(20))
+        livesLabel.setPosition(playableRect: playableRect)
         cameraNode.addChild(livesLabel)
         
         catsLabel.text = "Cats: X"
@@ -115,7 +107,8 @@ class GameScene: SKScene {
         
         moveTrain()
         moveCamera()
-        livesLabel.text = "Lives: \(lives)"
+        livesLabel.updateLivesText(lives: self.lives)
+        
         
         if lives <= 0 && !gameOver {
             gameOver = true
