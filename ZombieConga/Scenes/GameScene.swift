@@ -6,6 +6,13 @@
 //  Copyright © 2017 Kim SAVAROCHE. All rights reserved.
 //
 
+/*
+ TODO :
+ - rename Zombie into Player
+ - rename Cat into Follower
+ - rename CatLady into Enemy
+ */
+
 import SpriteKit
 
 class GameScene: SKScene {
@@ -19,24 +26,17 @@ class GameScene: SKScene {
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     
-    
-    let playableRect: CGRect
     var lastTouchLocation: CGPoint?
     
     var gameOver = false
-    let cameraNode = SKCameraNode()
-    let cameraMovePointsPerSec: CGFloat = 200.0
+    
+    let cameraNode = Camera()
     
     let livesLabel = LivesLabel()
     let catsLabel = CatsLabel()
     
     override init(size: CGSize) {
-        let maxAspectRatio:CGFloat = 16.0/9.0
-        let playableHeight = size.width / maxAspectRatio
-        let playableMargin = (size.height-playableHeight)/2.0
-        playableRect = CGRect(x: 0, y: playableMargin,
-                              width: size.width,
-                              height: playableHeight)
+        cameraNode.setDimensions(sceneWidth: size.width, sceneHeight: size.height)
         
         super.init(size: size)
         
@@ -75,15 +75,13 @@ class GameScene: SKScene {
                                SKAction.wait(forDuration: 1.0)])))
         
         addChild(cameraNode)
-        camera = cameraNode
-        cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
+        self.camera = cameraNode
         
-        livesLabel.setPosition(playableRect: playableRect)
+        livesLabel.setPosition(playableRect: cameraNode.getPlayableRect())
         cameraNode.addChild(livesLabel)
         
-        catsLabel.setPosition(playableRect: playableRect)
+        catsLabel.setPosition(playableRect: cameraNode.getPlayableRect())
         cameraNode.addChild(catsLabel)
-        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -96,7 +94,7 @@ class GameScene: SKScene {
         
         zombie.move(dt: dt)
         zombie.rotate(dt: dt)
-        zombie.boundsCheck(cameraRect: cameraRect)
+        zombie.boundsCheck(cameraRect: cameraNode.getRect())
         
         moveTrain()
         moveCamera()
@@ -147,12 +145,12 @@ class GameScene: SKScene {
     // MARK: Spawn
     
     func spawnEnemy() {
-        let enemy = CatLady(cameraRect: cameraRect)
+        let enemy = CatLady(cameraRect: cameraNode.getRect())
         addChild(enemy)
     }
     
     func spawnCat() {
-        let cat = Cat(cameraRect: cameraRect)
+        let cat = Cat(cameraRect: cameraNode.getRect())
         addChild(cat)
     }
     
@@ -277,15 +275,14 @@ class GameScene: SKScene {
     }
     
     func moveCamera() {
-        let backgroundVelocity =
-            CGPoint(x: cameraMovePointsPerSec, y: 0)
-        let amountToMove = backgroundVelocity * CGFloat(dt)
-        cameraNode.position += amountToMove
+        cameraNode.move(dt: dt)
+        
+        let cameraRect = cameraNode.getRect()
         
         enumerateChildNodes(withName: "background") { node, _ in
             let background = node as! SKSpriteNode
             if background.position.x + background.size.width <
-                self.cameraRect.origin.x {
+                cameraRect.origin.x {
                 background.position = CGPoint(
                     x: background.position.x + background.size.width*2,
                     y: background.position.y)
@@ -293,17 +290,4 @@ class GameScene: SKScene {
         }
         
     }
-    
-    var cameraRect : CGRect {
-        let x = cameraNode.position.x - size.width/2
-            + (size.width - playableRect.width)/2
-        let y = cameraNode.position.y - size.height/2
-            + (size.height - playableRect.height)/2
-        return CGRect(
-            x: x,
-            y: y,
-            width: playableRect.width,
-            height: playableRect.height)
-    }
-    
 }

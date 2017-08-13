@@ -26,6 +26,7 @@
 		7593A7231F4086E800D3035B /* CatLady.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A7221F4086E800D3035B /* CatLady.swift */; };
 		7593A7261F408B5F00D3035B /* LivesLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A7251F408B5F00D3035B /* LivesLabel.swift */; };
 		7593A7281F408D5D00D3035B /* CatsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A7271F408D5D00D3035B /* CatsLabel.swift */; };
+		7593A72B1F408F5A00D3035B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A72A1F408F5A00D3035B /* Camera.swift */; };
 		75CF00201F3F6C6F00306DB3 /* GLIMSTIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */; };
 		75EE5C611F3F6D85003EF6AD /* BackgroundMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		7593A7221F4086E800D3035B /* CatLady.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLady.swift; sourceTree = "<group>"; };
 		7593A7251F408B5F00D3035B /* LivesLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesLabel.swift; sourceTree = "<group>"; };
 		7593A7271F408D5D00D3035B /* CatsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsLabel.swift; sourceTree = "<group>"; };
+		7593A72A1F408F5A00D3035B /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GLIMSTIC.TTF; sourceTree = "<group>"; };
 		75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusicPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 			children = (
 				750292B41F3F412600D15CD2 /* AppDelegate.swift */,
 				750292BC1F3F412600D15CD2 /* GameViewController.swift */,
+				7593A7291F408F3A00D3035B /* Camera */,
 				757D8EB01F4057C20075B775 /* Scenes */,
 				757D8EBA1F4058CE0075B775 /* SKSpriteNode */,
 				7593A7241F408B2D00D3035B /* Labels */,
@@ -150,6 +153,14 @@
 				7593A7271F408D5D00D3035B /* CatsLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		7593A7291F408F3A00D3035B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				7593A72A1F408F5A00D3035B /* Camera.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		75CF001E1F3F6C4B00306DB3 /* Fonts */ = {
@@ -255,6 +266,7 @@
 				750292B51F3F412600D15CD2 /* AppDelegate.swift in Sources */,
 				757D8EBE1F407AD70075B775 /* Cat.swift in Sources */,
 				757D8EBC1F4059080075B775 /* Zombie.swift in Sources */,
+				7593A72B1F408F5A00D3035B /* Camera.swift in Sources */,
 				757D8EB61F4057C20075B775 /* GameOverScene.swift in Sources */,
 				75EE5C611F3F6D85003EF6AD /* BackgroundMusicPlayer.swift in Sources */,
 			);
