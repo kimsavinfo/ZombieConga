@@ -22,6 +22,7 @@
 		757D8EB81F4057C20075B775 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8EB31F4057C20075B775 /* MainMenuScene.swift */; };
 		757D8EB91F4057C20075B775 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8EB51F4057C20075B775 /* Utils.swift */; };
 		757D8EBC1F4059080075B775 /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8EBB1F4059080075B775 /* Zombie.swift */; };
+		757D8EBE1F407AD70075B775 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8EBD1F407AD70075B775 /* Cat.swift */; };
 		75CF00201F3F6C6F00306DB3 /* GLIMSTIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */; };
 		75EE5C611F3F6D85003EF6AD /* BackgroundMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		757D8EB31F4057C20075B775 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		757D8EB51F4057C20075B775 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		757D8EBB1F4059080075B775 /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
+		757D8EBD1F407AD70075B775 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		75CF001F1F3F6C6F00306DB3 /* GLIMSTIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GLIMSTIC.TTF; sourceTree = "<group>"; };
 		75EE5C601F3F6D85003EF6AD /* BackgroundMusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusicPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				757D8EBB1F4059080075B775 /* Zombie.swift */,
+				757D8EBD1F407AD70075B775 /* Cat.swift */,
 			);
 			path = SKSpriteNode;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				750292BD1F3F412600D15CD2 /* GameViewController.swift in Sources */,
 				757D8EB91F4057C20075B775 /* Utils.swift in Sources */,
 				750292B51F3F412600D15CD2 /* AppDelegate.swift in Sources */,
+				757D8EBE1F407AD70075B775 /* Cat.swift in Sources */,
 				757D8EBC1F4059080075B775 /* Zombie.swift in Sources */,
 				757D8EB61F4057C20075B775 /* GameOverScene.swift in Sources */,
 				75EE5C611F3F6D85003EF6AD /* BackgroundMusicPlayer.swift in Sources */,
