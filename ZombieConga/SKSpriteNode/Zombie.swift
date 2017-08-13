@@ -14,6 +14,7 @@ class Zombie : SKSpriteNode {
     var velocity = CGPoint.zero
     let movePointsPerSec: CGFloat = 480.0
     let rotateRadiansPerSec:CGFloat = 4.0 * π
+    var invincible = false
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -96,5 +97,25 @@ class Zombie : SKSpriteNode {
     
     func stopAnimation() {
         self.removeAction(forKey: "animation")
+    }
+    
+    func blink() {
+        self.invincible = true
+        let blinkTimes = 10.0
+        let duration = 3.0
+        
+        let blinkAction = SKAction.customAction(withDuration: duration) { node, elapsedTime in
+            let slice = duration / blinkTimes
+            let remainder = Double(elapsedTime).truncatingRemainder(
+                dividingBy: slice)
+            node.isHidden = remainder > slice / 2
+        }
+        
+        let setHidden = SKAction.run() { [weak self] in
+            self?.isHidden = false
+            self?.invincible = false
+        }
+        
+        run(SKAction.sequence([blinkAction, setHidden]))
     }
 }

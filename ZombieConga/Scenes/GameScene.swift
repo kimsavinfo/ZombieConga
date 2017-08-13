@@ -23,7 +23,6 @@ class GameScene: SKScene {
     let livesLabel = LivesLabel()
     let catsLabel = CatsLabel()
     
-    var invincible = false
     var lives = 5
     var gameOver = false
     
@@ -33,10 +32,8 @@ class GameScene: SKScene {
     var lastTouchLocation: CGPoint?
     
     override init(size: CGSize) {
-        cameraNode.setDimensions(sceneWidth: size.width, sceneHeight: size.height)
-        
         super.init(size: size)
-        
+        cameraNode.setDimensions(sceneWidth: size.width, sceneHeight: size.height)
         backgroundMusicPlayer.play(filename: "backgroundMusic.mp3")
     }
     
@@ -44,7 +41,7 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Update
+    // MARK: didMove
     
     override func didMove(to view: SKView) {
         for i in 0...1 {
@@ -76,6 +73,8 @@ class GameScene: SKScene {
         cameraNode.addChild(catsLabel)
     }
     
+    // MARK: update
+    
     override func update(_ currentTime: TimeInterval) {
         if lastUpdateTime > 0 {
             dt = currentTime - lastUpdateTime
@@ -106,6 +105,16 @@ class GameScene: SKScene {
             view?.presentScene(gameOverScene, transition: reveal)
         }
         
+    }
+    
+    func moveCamera() {
+        cameraNode.move(dt: dt)
+        
+        let cameraRect = cameraNode.getRect()
+        enumerateChildNodes(withName: "background") { node, _ in
+            let background = node as! SKSpriteNode
+            scrollBackground(backgroundNode: background, cameraRect: cameraRect)
+        }
     }
     
     // MARK: Touch event
@@ -149,20 +158,8 @@ class GameScene: SKScene {
     // MARK: Zombie Hit
     
     func zombieHit(enemy: CatLady) {
-        invincible = true
-        let blinkTimes = 10.0
-        let duration = 3.0
-        let blinkAction = SKAction.customAction(withDuration: duration) { node, elapsedTime in
-            let slice = duration / blinkTimes
-            let remainder = Double(elapsedTime).truncatingRemainder(
-                dividingBy: slice)
-            node.isHidden = remainder > slice / 2
-        }
-        let setHidden = SKAction.run() { [weak self] in
-            self?.zombie.isHidden = false
-            self?.invincible = false
-        }
-        zombie.run(SKAction.sequence([blinkAction, setHidden]))
+        zombie.blink()
+        
         
         enemy.playCollideSound()
         
@@ -178,15 +175,13 @@ class GameScene: SKScene {
             }
         }
         
-        if invincible {
-            return
-        }
-        
-        enumerateChildNodes(withName: "enemy") { node, _ in
-            let enemy = node as! CatLady
-            if node.frame.insetBy(dx: 20, dy: 20).intersects(
-                self.zombie.frame) {
-                self.zombieHit(enemy: enemy)
+        if !zombie.invincible {
+            enumerateChildNodes(withName: "enemy") { node, _ in
+                let enemy = node as! CatLady
+                if node.frame.insetBy(dx: 20, dy: 20).intersects(
+                    self.zombie.frame) {
+                    self.zombieHit(enemy: enemy)
+                }
             }
         }
     }
@@ -237,16 +232,6 @@ class GameScene: SKScene {
             if loseCount >= 2 {
                 stop[0] = true
             }
-        }
-    }
-    
-    func moveCamera() {
-        cameraNode.move(dt: dt)
-        
-        let cameraRect = cameraNode.getRect()
-        enumerateChildNodes(withName: "background") { node, _ in
-            let background = node as! SKSpriteNode
-            scrollBackground(backgroundNode: background, cameraRect: cameraRect)
         }
     }
 }
