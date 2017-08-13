@@ -89,7 +89,7 @@ class GameScene: SKScene {
         livesLabel.updateText(count: self.gameLogic.lives)
         
         if(self.gameLogic.isGameOver()) {
-            showGameOverScene()
+            showGameOverScene(hasWon: false)
         }
     }
     
@@ -120,7 +120,7 @@ class GameScene: SKScene {
         catsLabel.updateText(count: trainCount)
         
         if(self.gameLogic.isGameOver(followersCount: trainCount)) {
-            showGameOverScene()
+            showGameOverScene(hasWon: true)
         }
     }
     
@@ -134,10 +134,10 @@ class GameScene: SKScene {
         }
     }
     
-    func showGameOverScene() {
+    func showGameOverScene(hasWon: Bool) {
         backgroundMusicPlayer.stop()
         
-        let gameOverScene = GameOverScene(size: size, won: false)
+        let gameOverScene = GameOverScene(size: size, won: hasWon)
         gameOverScene.scaleMode = self.scaleMode
         let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
         view?.presentScene(gameOverScene, transition: reveal)
@@ -206,7 +206,7 @@ class GameScene: SKScene {
         if !zombie.invincible {
             enumerateChildNodes(withName: "enemy") { node, _ in
                 let enemy = node as! CatLady
-                if node.frame.insetBy(dx: 20, dy: 20).intersects(
+                if node.frame.insetBy(dx: 10, dy: 10).intersects(
                     self.zombie.frame) {
                     self.zombieHit(enemy: enemy)
                 }

@@ -12,7 +12,7 @@ import SpriteKit
 class Zombie : SKSpriteNode {
     var animation: SKAction
     var velocity = CGPoint.zero
-    let movePointsPerSec: CGFloat = 480.0
+    let movePointsPerSec: CGFloat = 680.0
     let rotateRadiansPerSec:CGFloat = 4.0 * π
     var invincible = false
     
