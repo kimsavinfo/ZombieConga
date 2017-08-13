@@ -23,9 +23,6 @@ class GameScene: SKScene {
     let playableRect: CGRect
     var lastTouchLocation: CGPoint?
     
-    let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed(
-        "hitCatLady.wav", waitForCompletion: false)
-    
     var gameOver = false
     let cameraNode = SKCameraNode()
     let cameraMovePointsPerSec: CGFloat = 200.0
@@ -175,7 +172,7 @@ class GameScene: SKScene {
     
     // MARK: Zombie Hit
     
-    func zombieHit(enemy: SKSpriteNode) {
+    func zombieHit(enemy: CatLady) {
         invincible = true
         let blinkTimes = 10.0
         let duration = 3.0
@@ -191,7 +188,7 @@ class GameScene: SKScene {
         }
         zombie.run(SKAction.sequence([blinkAction, setHidden]))
         
-        run(enemyCollisionSound)
+        enemy.playCollideSound()
         
         loseCats()
         lives -= 1
@@ -209,16 +206,12 @@ class GameScene: SKScene {
             return
         }
         
-        var hitEnemies: [SKSpriteNode] = []
         enumerateChildNodes(withName: "enemy") { node, _ in
-            let enemy = node as! SKSpriteNode
+            let enemy = node as! CatLady
             if node.frame.insetBy(dx: 20, dy: 20).intersects(
                 self.zombie.frame) {
-                hitEnemies.append(enemy)
+                self.zombieHit(enemy: enemy)
             }
-        }
-        for enemy in hitEnemies {
-            zombieHit(enemy: enemy)
         }
     }
     

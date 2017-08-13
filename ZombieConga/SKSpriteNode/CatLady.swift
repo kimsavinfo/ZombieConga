@@ -10,6 +10,9 @@ import Foundation
 import SpriteKit
 
 class CatLady : SKSpriteNode {
+    let collisionSound: SKAction = SKAction.playSoundFileNamed(
+        "hitCatLady.wav", waitForCompletion: false)
+    
     init(cameraRect: CGRect) {
         let texture = SKTexture(imageNamed: "enemy")
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
@@ -32,6 +35,10 @@ class CatLady : SKSpriteNode {
         let actionRemove = SKAction.removeFromParent()
         
         self.run(SKAction.sequence([actionMove, actionRemove]))
+    }
+    
+    func playCollideSound() {
+        run(collisionSound)
     }
     
     required init?(coder aDecoder: NSCoder) {
