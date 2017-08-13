@@ -12,6 +12,7 @@ import SpriteKit
 class Cat : SKSpriteNode {
     let collisionSound: SKAction = SKAction.playSoundFileNamed(
         "hitCat.wav", waitForCompletion: false)
+    let movePointsPerSec:CGFloat = 480.0
     
     init(cameraRect: CGRect) {
         let texture = SKTexture(imageNamed: "cat")
@@ -26,10 +27,10 @@ class Cat : SKSpriteNode {
         self.zPosition = 50
         self.setScale(0)
         
-        runActions()
+        animate()
     }
     
-    func runActions() {
+    func animate() {
         let appear = SKAction.scale(to: 1.0, duration: 0.5)
         
         self.zRotation = -π / 16.0
@@ -48,7 +49,7 @@ class Cat : SKSpriteNode {
         let removeFromParent = SKAction.removeFromParent()
         
         let actions = [appear, groupWait, disappear, removeFromParent]
-        self.run(SKAction.sequence(actions))
+        run(SKAction.sequence(actions))
     }
     
     // MARK: Collision
@@ -60,11 +61,21 @@ class Cat : SKSpriteNode {
         self.zRotation = 0
         
         let turnGreen = SKAction.colorize(with: SKColor.green, colorBlendFactor: 1.0, duration: 0.2)
-        self.run(turnGreen)
+        run(turnGreen)
         
-        self.run(collisionSound)
+        run(collisionSound)
     }
+    
+    func move(targetPosition: CGPoint) {
+        let actionDuration = 0.3
+        let offset = targetPosition - self.position
+        let direction = offset.normalized()
+        let amountToMovePerSec = direction * self.movePointsPerSec
+        let amountToMove = amountToMovePerSec * CGFloat(actionDuration)
+        let moveAction = SKAction.moveBy(x: amountToMove.x, y: amountToMove.y, duration: actionDuration)
         
+        run(moveAction)
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

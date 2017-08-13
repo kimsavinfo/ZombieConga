@@ -23,13 +23,8 @@ class GameScene: SKScene {
     let playableRect: CGRect
     var lastTouchLocation: CGPoint?
     
-    
-    let catMovePointsPerSec:CGFloat = 480.0
     let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed(
         "hitCatLady.wav", waitForCompletion: false)
-
-    
-    
     
     var gameOver = false
     let cameraNode = SKCameraNode()
@@ -244,22 +239,18 @@ class GameScene: SKScene {
     }
     
     func moveTrain() {
-        
         var trainCount = 0
         var targetPosition = zombie.position
         
         enumerateChildNodes(withName: "train") { node, stop in
             trainCount += 1
-            if !node.hasActions() {
-                let actionDuration = 0.3
-                let offset = targetPosition - node.position
-                let direction = offset.normalized()
-                let amountToMovePerSec = direction * self.catMovePointsPerSec
-                let amountToMove = amountToMovePerSec * CGFloat(actionDuration)
-                let moveAction = SKAction.moveBy(x: amountToMove.x, y: amountToMove.y, duration: actionDuration)
-                node.run(moveAction)
+            
+            let cat = node as! Cat
+            if !cat.hasActions() {
+                cat.move(targetPosition: targetPosition)
             }
-            targetPosition = node.position
+            
+            targetPosition = cat.position
         }
         
         if trainCount >= 15 && !gameOver {
