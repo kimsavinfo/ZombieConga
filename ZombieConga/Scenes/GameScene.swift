@@ -68,8 +68,6 @@ class GameScene: SKScene {
             addChild(background)
         }
         
-        zombie.position = CGPoint(x: 400, y: 400)
-        zombie.zPosition = 100
         addChild(zombie)
         
         run(SKAction.repeatForever(

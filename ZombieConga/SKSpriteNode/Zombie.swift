@@ -24,6 +24,9 @@ class Zombie : SKSpriteNode {
         
         let texture = SKTexture(imageNamed: "zombie1")
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        
+        self.position = CGPoint(x: 400, y: 400)
+        self.zPosition = 100
     }
     
     func startAnimation() {
