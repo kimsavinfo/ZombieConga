@@ -1,5 +1,5 @@
 //
-//  LivesLabel.swift
+//  CatsLabel.swift
 //  ZombieConga
 //
 //  Created by Kim SAVAROCHE on 13/08/2017.
@@ -9,8 +9,7 @@
 import Foundation
 import SpriteKit
 
-class LivesLabel : SKLabelNode {
-    
+class CatsLabel : SKLabelNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -19,21 +18,21 @@ class LivesLabel : SKLabelNode {
         super.init()
         
         self.fontName = "Glimstick"
-        self.text = "Lives: X"
+        self.text = "Cats: X"
         self.fontColor = SKColor.black
         self.fontSize = 100
         self.zPosition = 150
-        self.horizontalAlignmentMode = .left
+        self.horizontalAlignmentMode = .right
         self.verticalAlignmentMode = .bottom
     }
     
     func setPosition(playableRect: CGRect) {
         self.position = CGPoint(
-            x: -playableRect.size.width/2 + CGFloat(20),
+            x: playableRect.size.width/2 - CGFloat(20),
             y: -playableRect.size.height/2 + CGFloat(20))
     }
     
     func updateText(count: Int) {
-        self.text = "Lives: \(count)"
+        self.text = "Cats: \(count)"
     }
 }
