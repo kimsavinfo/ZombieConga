@@ -6,16 +6,10 @@
 //  Copyright © 2017 Kim SAVAROCHE. All rights reserved.
 //
 
-/*
- TODO :
- - rename Zombie into Player
- - rename Cat into Follower
- - rename CatLady into Enemy
- */
-
 import SpriteKit
 
 class GameScene: SKScene {
+    let gameLogic = GameLogic()
     let cameraNode = Camera()
     let backgroundMusicPlayer = BackgroundMusicPlayer()
     
@@ -23,13 +17,12 @@ class GameScene: SKScene {
     let livesLabel = LivesLabel()
     let catsLabel = CatsLabel()
     
-    var lives = 5
-    var gameOver = false
-    
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     
     var lastTouchLocation: CGPoint?
+    
+    // MARK: init
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -54,14 +47,12 @@ class GameScene: SKScene {
         run(SKAction.repeatForever(
             SKAction.sequence([SKAction.run() { [weak self] in
                 self?.spawnEnemy()
-                },
-                               SKAction.wait(forDuration: 2.0)])))
+                }, SKAction.wait(forDuration: 2.0)])))
         
         run(SKAction.repeatForever(
             SKAction.sequence([SKAction.run() { [weak self] in
                 self?.spawnCat()
-                },
-                               SKAction.wait(forDuration: 1.0)])))
+                }, SKAction.wait(forDuration: 1.0)])))
         
         addChild(cameraNode)
         self.camera = cameraNode
@@ -73,15 +64,20 @@ class GameScene: SKScene {
         cameraNode.addChild(catsLabel)
     }
     
+    func spawnEnemy() {
+        let enemy = CatLady(cameraRect: cameraNode.getRect())
+        addChild(enemy)
+    }
+    
+    func spawnCat() {
+        let cat = Cat(cameraRect: cameraNode.getRect())
+        addChild(cat)
+    }
+    
     // MARK: update
     
     override func update(_ currentTime: TimeInterval) {
-        if lastUpdateTime > 0 {
-            dt = currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        lastUpdateTime = currentTime
+        updateTimer(currentTime)
         
         zombie.move(dt: dt)
         zombie.rotate(dt: dt)
@@ -89,22 +85,43 @@ class GameScene: SKScene {
         
         moveTrain()
         moveCamera()
-        livesLabel.updateText(count: self.lives)
         
+        livesLabel.updateText(count: self.gameLogic.lives)
         
-        if lives <= 0 && !gameOver {
-            gameOver = true
-            backgroundMusicPlayer.stop()
-            
-            // 1
-            let gameOverScene = GameOverScene(size: size, won: false)
-            gameOverScene.scaleMode = scaleMode
-            // 2
-            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-            // 3
-            view?.presentScene(gameOverScene, transition: reveal)
+        if(self.gameLogic.isGameOver()) {
+            showGameOverScene()
+        }
+    }
+    
+    func updateTimer(_ currentTime: TimeInterval) {
+        if lastUpdateTime > 0 {
+            dt = currentTime - lastUpdateTime
+        } else {
+            dt = 0
         }
         
+        lastUpdateTime = currentTime
+    }
+    
+    func moveTrain() {
+        var trainCount = 0
+        var targetPosition = zombie.position
+        
+        enumerateChildNodes(withName: "train") { node, stop in
+            trainCount += 1
+            
+            let cat = node as! Cat
+            if !cat.hasActions() {
+                cat.moveAsTrain(targetPosition: targetPosition)
+            }
+            
+            targetPosition = cat.position
+        }
+        catsLabel.updateText(count: trainCount)
+        
+        if(self.gameLogic.isGameOver(followersCount: trainCount)) {
+            showGameOverScene()
+        }
     }
     
     func moveCamera() {
@@ -115,6 +132,15 @@ class GameScene: SKScene {
             let background = node as! SKSpriteNode
             scrollBackground(backgroundNode: background, cameraRect: cameraRect)
         }
+    }
+    
+    func showGameOverScene() {
+        backgroundMusicPlayer.stop()
+        
+        let gameOverScene = GameOverScene(size: size, won: false)
+        gameOverScene.scaleMode = self.scaleMode
+        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+        view?.presentScene(gameOverScene, transition: reveal)
     }
     
     // MARK: Touch event
@@ -143,29 +169,31 @@ class GameScene: SKScene {
         sceneTouched(touchLocation: touchLocation)
     }
     
-    // MARK: Spawn
-    
-    func spawnEnemy() {
-        let enemy = CatLady(cameraRect: cameraNode.getRect())
-        addChild(enemy)
-    }
-    
-    func spawnCat() {
-        let cat = Cat(cameraRect: cameraNode.getRect())
-        addChild(cat)
-    }
-    
     // MARK: Zombie Hit
     
     func zombieHit(enemy: CatLady) {
-        zombie.blink()
-        
-        
         enemy.playCollideSound()
+        zombie.blink()
+        self.gameLogic.hurt()
         
         loseCats()
-        lives -= 1
     }
+    
+    func loseCats() {
+        var loseCount = 0
+        
+        enumerateChildNodes(withName: "train") { node, stop in
+            let cat = node as! Cat
+            cat.removeFromTrain()
+            
+            loseCount += 1
+            if loseCount >= 2 {
+                stop[0] = true
+            }
+        }
+    }
+    
+    // MARK: didEvaluateActions
     
     func checkCollisions() {
         enumerateChildNodes(withName: "cat") { node, _ in
@@ -188,50 +216,5 @@ class GameScene: SKScene {
     
     override func didEvaluateActions() {
         checkCollisions()
-    }
-    
-    func moveTrain() {
-        var trainCount = 0
-        var targetPosition = zombie.position
-        
-        enumerateChildNodes(withName: "train") { node, stop in
-            trainCount += 1
-            
-            let cat = node as! Cat
-            if !cat.hasActions() {
-                cat.moveAsTrain(targetPosition: targetPosition)
-            }
-            
-            targetPosition = cat.position
-        }
-        
-        if trainCount >= 15 && !gameOver {
-            gameOver = true
-            backgroundMusicPlayer.stop()
-            
-            // 1
-            let gameOverScene = GameOverScene(size: size, won: true)
-            gameOverScene.scaleMode = scaleMode
-            // 2
-            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-            // 3
-            view?.presentScene(gameOverScene, transition: reveal)
-        }
-        
-        catsLabel.updateText(count: trainCount)
-    }
-    
-    func loseCats() {
-        var loseCount = 0
-        
-        enumerateChildNodes(withName: "train") { node, stop in
-            let cat = node as! Cat
-            cat.removeFromTrain()
-            
-            loseCount += 1
-            if loseCount >= 2 {
-                stop[0] = true
-            }
-        }
     }
 }

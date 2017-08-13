@@ -24,6 +24,7 @@
 		757D8EBC1F4059080075B775 /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8EBB1F4059080075B775 /* Zombie.swift */; };
 		757D8EBE1F407AD70075B775 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D8EBD1F407AD70075B775 /* Cat.swift */; };
 		758FB10B1F409A780074CC51 /* BackgroundScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758FB10A1F409A780074CC51 /* BackgroundScroller.swift */; };
+		758FB10D1F40A3870074CC51 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758FB10C1F40A3870074CC51 /* GameLogic.swift */; };
 		7593A7231F4086E800D3035B /* CatLady.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A7221F4086E800D3035B /* CatLady.swift */; };
 		7593A7261F408B5F00D3035B /* LivesLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A7251F408B5F00D3035B /* LivesLabel.swift */; };
 		7593A7281F408D5D00D3035B /* CatsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7593A7271F408D5D00D3035B /* CatsLabel.swift */; };
@@ -52,6 +53,7 @@
 		757D8EBB1F4059080075B775 /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 		757D8EBD1F407AD70075B775 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		758FB10A1F409A780074CC51 /* BackgroundScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundScroller.swift; sourceTree = "<group>"; };
+		758FB10C1F40A3870074CC51 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 		7593A7221F4086E800D3035B /* CatLady.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLady.swift; sourceTree = "<group>"; };
 		7593A7251F408B5F00D3035B /* LivesLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesLabel.swift; sourceTree = "<group>"; };
 		7593A7271F408D5D00D3035B /* CatsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsLabel.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				750292B41F3F412600D15CD2 /* AppDelegate.swift */,
 				750292BC1F3F412600D15CD2 /* GameViewController.swift */,
+				758FB10C1F40A3870074CC51 /* GameLogic.swift */,
 				7593A7291F408F3A00D3035B /* Camera */,
 				757D8EB01F4057C20075B775 /* Scenes */,
 				757D8EBA1F4058CE0075B775 /* SKSpriteNode */,
@@ -262,6 +265,7 @@
 				757D8EB81F4057C20075B775 /* MainMenuScene.swift in Sources */,
 				758FB10B1F409A780074CC51 /* BackgroundScroller.swift in Sources */,
 				7593A7281F408D5D00D3035B /* CatsLabel.swift in Sources */,
+				758FB10D1F40A3870074CC51 /* GameLogic.swift in Sources */,
 				757D8EB71F4057C20075B775 /* GameScene.swift in Sources */,
 				7593A7231F4086E800D3035B /* CatLady.swift in Sources */,
 				7593A7261F408B5F00D3035B /* LivesLabel.swift in Sources */,
