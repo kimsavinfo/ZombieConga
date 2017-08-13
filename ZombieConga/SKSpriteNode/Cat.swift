@@ -10,6 +10,9 @@ import Foundation
 import SpriteKit
 
 class Cat : SKSpriteNode {
+    let collisionSound: SKAction = SKAction.playSoundFileNamed(
+        "hitCat.wav", waitForCompletion: false)
+    
     init(cameraRect: CGRect) {
         let texture = SKTexture(imageNamed: "cat")
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
@@ -58,6 +61,8 @@ class Cat : SKSpriteNode {
         
         let turnGreen = SKAction.colorize(with: SKColor.green, colorBlendFactor: 1.0, duration: 0.2)
         self.run(turnGreen)
+        
+        self.run(collisionSound)
     }
         
     

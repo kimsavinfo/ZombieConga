@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     
     let zombie = Zombie()
+    let backgroundMusicPlayer = BackgroundMusicPlayer()
     
     var invincible = false
     var lives = 5
@@ -22,12 +23,12 @@ class GameScene: SKScene {
     let playableRect: CGRect
     var lastTouchLocation: CGPoint?
     
-    let catCollisionSound: SKAction = SKAction.playSoundFileNamed(
-        "hitCat.wav", waitForCompletion: false)
-    let catMovePointsPerSec:CGFloat = 480.0
     
+    let catMovePointsPerSec:CGFloat = 480.0
     let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed(
         "hitCatLady.wav", waitForCompletion: false)
+
+    
     
     
     var gameOver = false
@@ -55,8 +56,7 @@ class GameScene: SKScene {
     // MARK: Update
     
     override func didMove(to view: SKView) {
-        
-        playBackgroundMusic(filename: "backgroundMusic.mp3")
+        backgroundMusicPlayer.play(filename: "backgroundMusic.mp3")
         
         for i in 0...1 {
             let background = backgroundNode()
@@ -192,11 +192,6 @@ class GameScene: SKScene {
     
     // MARK: Zombie Hit
     
-    func zombieHit(cat: Cat) {
-        cat.addToTrain()
-        run(catCollisionSound)
-    }
-    
     func zombieHit(enemy: SKSpriteNode) {
         invincible = true
         let blinkTimes = 10.0
@@ -220,16 +215,11 @@ class GameScene: SKScene {
     }
     
     func checkCollisions() {
-        var hitCats: [Cat] = []
         enumerateChildNodes(withName: "cat") { node, _ in
             let cat = node as! Cat
             if cat.frame.intersects(self.zombie.frame) {
-                hitCats.append(cat)
+                cat.addToTrain()
             }
-        }
-        
-        for cat in hitCats {
-            zombieHit(cat: cat)
         }
         
         if invincible {
