@@ -16,24 +16,21 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let cameraNode = Camera()
+    let backgroundMusicPlayer = BackgroundMusicPlayer()
     
     let zombie = Zombie()
-    let backgroundMusicPlayer = BackgroundMusicPlayer()
+    let livesLabel = LivesLabel()
+    let catsLabel = CatsLabel()
     
     var invincible = false
     var lives = 5
+    var gameOver = false
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     
     var lastTouchLocation: CGPoint?
-    
-    var gameOver = false
-    
-    let cameraNode = Camera()
-    
-    let livesLabel = LivesLabel()
-    let catsLabel = CatsLabel()
     
     override init(size: CGSize) {
         cameraNode.setDimensions(sceneWidth: size.width, sceneHeight: size.height)
@@ -51,13 +48,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         for i in 0...1 {
-            let background = backgroundNode()
-            background.anchorPoint = CGPoint.zero
-            background.position =
-                CGPoint(x: CGFloat(i)*background.size.width, y: 0)
-            background.name = "background"
-            background.zPosition = -1
-            addChild(background)
+            let background = Background(position: i)
+            addChild(background.getNode())
         }
         
         addChild(zombie)
@@ -246,32 +238,6 @@ class GameScene: SKScene {
                 stop[0] = true
             }
         }
-    }
-    
-    func backgroundNode() -> SKSpriteNode {
-        // 1
-        let backgroundNode = SKSpriteNode()
-        backgroundNode.anchorPoint = CGPoint.zero
-        backgroundNode.name = "background"
-        
-        // 2
-        let background1 = SKSpriteNode(imageNamed: "background1")
-        background1.anchorPoint = CGPoint.zero
-        background1.position = CGPoint(x: 0, y: 0)
-        backgroundNode.addChild(background1)
-        
-        // 3
-        let background2 = SKSpriteNode(imageNamed: "background2")
-        background2.anchorPoint = CGPoint.zero
-        background2.position =
-            CGPoint(x: background1.size.width, y: 0)
-        backgroundNode.addChild(background2)
-        
-        // 4
-        backgroundNode.size = CGSize(
-            width: background1.size.width + background2.size.width,
-            height: background1.size.height)
-        return backgroundNode
     }
     
     func moveCamera() {
